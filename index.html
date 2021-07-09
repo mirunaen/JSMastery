@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button {
+        margin: 10px;
+        font-size: large;
+        padding: 30px;
+    }
+
+    .box {
+        padding: 10px;
+        font-size: large;
+        margin: 5px;
+        border: solid aqua 1px;
+    }
+    .box:hover{
+        background-color: aquamarine;
+    }
+
+    #container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+</style>
+
+<body>
+    <div style="display: flex;justify-content: center; height: 100vh; align-items: center;flex-direction: column; ">
+        <button id="btn-counter"> Increase</button>
+        <button id="btn-decrease">Decrease</button>
+        <div>
+            <p id="counter" style="font-size: xx-large;">"0"</p>
+        </div>
+        <button id="btn-create">Create</button>
+        <button id="btn-delete">Delete</button>
+        <div id="container" >
+
+        </div>
+    </div>
+
+</body>
+<script>
+    //find the element
+
+    const counter = document.getElementById("counter");
+    //modify element
+
+    counter.innerText = "10";
+    //find button
+    const btn = document.getElementById("btn-counter");
+
+    btn.addEventListener("click", function () {
+        counter.innerText = parseInt(counter.innerText) + 1;
+    })
+
+    const decrease = document.getElementById("btn-decrease");
+    decrease.addEventListener("click", function () {
+        counter.innerText = parseInt(counter.innerText) - 1;
+    })
+
+    const creator = document.getElementById("btn-create");
+
+
+    function createBlock() {
+        const box = document.createElement("div");
+        box.innerText = "I am a box";
+        box.classList.add("box");
+        const container=document.getElementById("container")
+        container.appendChild(box)
+    }
+
+   
+    function deleteBlock(){
+       document.querySelectorAll(".box").forEach(node =>node.remove())
+    }
+    const deleteButton=document.getElementById("btn-delete");
+
+
+    creator.addEventListener("click", createBlock);
+    deleteButton.addEventListener("click", deleteBlock)
+</script>
+
+</html>
